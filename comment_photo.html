@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment and Photo Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .comment-section, .photo-upload {
+            margin: 20px 0;
+        }
+        textarea, input[type="file"], button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Comment and Photo Upload</h1>
+        
+        <!-- Comment Section -->
+        <div class="comment-section">
+            <h2>Leave a Comment</h2>
+            <!-- Textarea for user comments -->
+            <textarea id="commentBox" rows="5" placeholder="Write your comment here..."></textarea>
+            <button onclick="submitComment()">Submit Comment</button>
+        </div>
+
+        <!-- Photo Upload Section -->
+        <div class="photo-upload">
+            <h2>Upload a Photo</h2>
+            <!-- File input for photo upload -->
+            <input type="file" id="photoUpload" accept="image/*">
+            <button onclick="uploadPhoto()">Upload Photo</button>
+        </div>
+        
+        <!-- Display for messages -->
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // Function to handle comment submission
+        function submitComment() {
+            const comment = document.getElementById('commentBox').value;
+            if (comment.trim()) {
+                document.getElementById('message').textContent = `Thank you for your comment: "${comment}"`;
+            } else {
+                document.getElementById('message').textContent = 'Please enter a valid comment.';
+            }
+        }
+
+        // Function to handle photo upload
+        function uploadPhoto() {
+            const photoInput = document.getElementById('photoUpload');
+            if (photoInput.files.length > 0) {
+                const fileName = photoInput.files[0].name;
+                document.getElementById('message').textContent = `Photo "${fileName}" uploaded successfully!`;
+            } else {
+                document.getElementById('message').textContent = 'Please choose a photo to upload.';
+            }
+        }
+    </script>
+</body>
+</html>
